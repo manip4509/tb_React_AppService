@@ -13,7 +13,7 @@ spec:
   selector:
     app: app
 ---
-apiVersion: apiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: react-kubernetes-deployment
