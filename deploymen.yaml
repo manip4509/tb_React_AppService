@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: react-kubernetes-deployment 
+spec: 
+  selector: 
+    matchLabels: 
+      app: app 
+  replicas: 1 			  	 
+  template:
+    metadata:
+      labels:
+        app: app 
+    spec:
+      containers:
+      - name: deploy-react-kubernetes 
+        image: acrjavaeastus.azurecr.io/react:React148
+        ports:
+        - containerPort: 3000
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: 200m
+      imagePullSecrets:
+      - name: secret
+--- 
+kind: Service 
+apiVersion: v1 
+metadata: 
+  name: react-kubernetes-service
+spec: 
+  selector: 
+    app: app 		
+  ports: 
+  - protocol: TCP 
+    port: 3000
+    targetPort: 30080 
+  type: LoadBalancer 
