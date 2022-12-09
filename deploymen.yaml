@@ -22,8 +22,6 @@ spec:
             cpu: "1"
           requests:
             cpu: 200m
-      imagePullSecrets:
-      - name: secret
 --- 
 kind: Service 
 apiVersion: v1 
@@ -34,6 +32,6 @@ spec:
     app: app 		
   ports: 
   - protocol: TCP 
-    port: 3000
+    port: 8083
     targetPort: 3000
   type: LoadBalancer 
